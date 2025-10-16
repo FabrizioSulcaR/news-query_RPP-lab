@@ -210,6 +210,7 @@ This makes the notebook easy to follow and understand.
 ---
 
 **Last Updated**: October 16, 2025  
+**Authors**: FabrizioSulcaR and Verachamochumbi  
 **Status**: ✅ Complete and ready for submission  
 **Main File**: `notebooks/news_retrieval_system.ipynb` (24 cells, fully self-contained)
 

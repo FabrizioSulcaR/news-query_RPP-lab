@@ -292,8 +292,9 @@ For future enhancements:
 
 **Project Status**: ✅ COMPLETE AND READY FOR SUBMISSION
 
+**Authors**: FabrizioSulcaR and Verachamochumbi  
 **Created**: October 16, 2025  
 **Python Version**: 3.10+  
-**Total Files**: 12 (7 Python modules + 1 notebook + 4 config/docs)  
+**Main File**: notebooks/news_retrieval_system.ipynb (self-contained)  
 **Total Lines of Code**: ~1,200+
 

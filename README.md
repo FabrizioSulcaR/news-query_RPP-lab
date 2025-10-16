@@ -31,17 +31,11 @@ news-query_RPP-lab/
 │   ├── query_politica.csv
 │   ├── query_deportes.csv
 │   └── query_langchain_economia.csv
-├── src/                          # Optional: Modular code (reference only)
-│   ├── rss_parser.py            # RSS feed ingestion functions
-│   ├── tokenization.py          # Token counting functions
-│   ├── embeddings.py            # Embedding generation class
-│   ├── retrieval.py             # ChromaDB operations class
-│   └── pipeline.py              # LangChain orchestration class
 ├── requirements.txt              # Python dependencies
 └── README.md                     # This file
 ```
 
-**Note**: All code is self-contained in the Jupyter notebook. The `src/` directory contains reference implementations but is not required to run the notebook.
+**Note**: All code is self-contained in the Jupyter notebook - no external modules required!
 
 ---
 
@@ -97,52 +91,19 @@ Run all cells sequentially to:
 5. Perform similarity search queries
 6. Run LangChain end-to-end pipeline
 
-**All functions and classes are defined directly in the notebook** - no external imports from `src/` needed!
+**All functions and classes are defined directly in the notebook** - no external imports needed!
 
-### Optional: Using Modular Code
+### Code Structure
 
-If you prefer, you can also use the individual modules in the `src/` directory:
+The notebook contains:
 
-#### Fetch RSS Feed
-```python
-from src.rss_parser import fetch_rpp_news, save_articles_to_json
+- **RSS Parser Functions**: `fetch_rpp_news()`, `save_articles_to_json()`
+- **Tokenization Functions**: `count_tokens()`, `analyze_article_tokens()`, `needs_chunking()`, `analyze_corpus_tokens()`
+- **NewsEmbedder Class**: For generating embeddings with sentence-transformers
+- **NewsRetriever Class**: For ChromaDB storage and similarity search
+- **NewsRetrievalPipeline Class**: For LangChain orchestration
 
-articles = fetch_rpp_news(max_items=50)
-save_articles_to_json(articles, "data/rss_feed.json")
-```
-
-#### Analyze Tokens
-```python
-from src.tokenization import analyze_article_tokens, analyze_corpus_tokens
-
-token_analysis = analyze_article_tokens(articles[0])
-corpus_stats = analyze_corpus_tokens(articles)
-```
-
-#### Generate Embeddings
-```python
-from src.embeddings import NewsEmbedder
-
-embedder = NewsEmbedder(model_name="sentence-transformers/all-MiniLM-L6-v2")
-embedded_articles = embedder.embed_articles(articles)
-```
-
-#### Query with ChromaDB
-```python
-from src.retrieval import NewsRetriever
-
-retriever = NewsRetriever(collection_name="rpp_news")
-retriever.add_documents(embedded_articles)
-results_df = retriever.query_to_dataframe("Últimas noticias de economía", n_results=5, embedder=embedder)
-```
-
-#### LangChain Pipeline
-```python
-from src.pipeline import NewsRetrievalPipeline
-
-pipeline = NewsRetrievalPipeline()
-results = pipeline.run_pipeline(articles, query_text="Últimas noticias de economía", k=5)
-```
+Simply open the notebook and run all cells sequentially!
 
 ---
 
@@ -300,10 +261,11 @@ Each CSV contains columns: `title`, `description`, `link`, `date_published`
 
 ## 📝 Notes
 
-- All file paths are relative for reproducibility across different environments
-- The system persists ChromaDB collections for faster subsequent runs
-- Results are deterministic given the same RSS feed state
-- The notebook is compatible with Google Colab (add `!pip install -r requirements.txt` at the start)
+- **Self-Contained**: All code is embedded in the notebook - no external modules needed
+- **Relative Paths**: All file paths are relative for cross-environment reproducibility
+- **Persistent Storage**: ChromaDB collections are persisted for faster subsequent runs
+- **Deterministic**: Results are consistent given the same RSS feed state
+- **Google Colab Compatible**: Add `!pip install -r requirements.txt` at the start
 
 ---
 
@@ -313,11 +275,10 @@ This project is for educational purposes as part of the RPP Lab assignment.
 
 ---
 
-## 👥 Author
+## 👥 Authors
 
-Fabrizio Sulcar  
-CyberProyectos Lab
-
+**FabrizioSulcaR** and **Verachamochumbi**  
+CyberProyectos Lab  
 ---
 
 ## 📞 Support
