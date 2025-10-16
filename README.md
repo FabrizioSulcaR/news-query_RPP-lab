@@ -20,27 +20,28 @@ Build a retrieval system that:
 
 ```
 news-query_RPP-lab/
-├── src/                          # Core modules
-│   ├── __init__.py
-│   ├── rss_parser.py            # RSS feed ingestion
-│   ├── tokenization.py          # Token counting with tiktoken
-│   ├── embeddings.py            # Embedding generation
-│   ├── retrieval.py             # ChromaDB operations
-│   └── pipeline.py              # LangChain orchestration
-├── data/                         # Data storage
+├── notebooks/                    # Jupyter notebooks
+│   └── news_retrieval_system.ipynb  # MAIN FILE - Self-contained notebook
+├── data/                         # Data storage (created at runtime)
 │   ├── rss_feed.json            # Raw RSS data
 │   ├── chromadb/                # ChromaDB persistence
 │   └── langchain_chromadb/      # LangChain vector store
-├── notebooks/                    # Jupyter notebooks
-│   └── news_retrieval_system.ipynb
 ├── outputs/                      # Query results
 │   ├── query_economia.csv
 │   ├── query_politica.csv
 │   ├── query_deportes.csv
 │   └── query_langchain_economia.csv
+├── src/                          # Optional: Modular code (reference only)
+│   ├── rss_parser.py            # RSS feed ingestion functions
+│   ├── tokenization.py          # Token counting functions
+│   ├── embeddings.py            # Embedding generation class
+│   ├── retrieval.py             # ChromaDB operations class
+│   └── pipeline.py              # LangChain orchestration class
 ├── requirements.txt              # Python dependencies
 └── README.md                     # This file
 ```
+
+**Note**: All code is self-contained in the Jupyter notebook. The `src/` directory contains reference implementations but is not required to run the notebook.
 
 ---
 
@@ -80,16 +81,15 @@ news-query_RPP-lab/
 
 ## 📊 Usage
 
-### Option 1: Jupyter Notebook (Recommended)
+### Main Notebook (Self-Contained)
 
-The complete workflow is demonstrated in the Jupyter notebook:
+The complete workflow is in a single self-contained Jupyter notebook:
 
 ```bash
-cd notebooks
-jupyter notebook news_retrieval_system.ipynb
+jupyter notebook notebooks/news_retrieval_system.ipynb
 ```
 
-Run all cells to:
+Run all cells sequentially to:
 1. Fetch 50 latest articles from RPP RSS feed
 2. Analyze token counts using tiktoken
 3. Generate embeddings with SentenceTransformers
@@ -97,9 +97,11 @@ Run all cells to:
 5. Perform similarity search queries
 6. Run LangChain end-to-end pipeline
 
-### Option 2: Python Scripts
+**All functions and classes are defined directly in the notebook** - no external imports from `src/` needed!
 
-You can also use individual modules programmatically:
+### Optional: Using Modular Code
+
+If you prefer, you can also use the individual modules in the `src/` directory:
 
 #### Fetch RSS Feed
 ```python
